@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+<div class="row">
+    <div class="col-6">
+{% for pic in profil %}
+            <div class="card" style="width: 18rem;">
+                <img src="{{pic.profil.url}}" class="card-img-top" style="width:200px; height:200px;" alt="...">
+                <div class="card-body">
+                    <p class="card-text">name: {{pic.nickname}}</p>
+                    <p class="card-text">nomor: {{pic.nomorhp}}</p>
+                    <p class="card-text">email: {{pic.email}}</p>
+                </div>
+            </div>
+{% endfor %}
+    </div>
+    
+    <div class="col-6">
+        <h2>UPDATE SETTING PROFIL</h2>
+        
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+                {{form.as_table}}
+
+            </table>
+            <button type="submit">kirim</button>
+        </form>
+    </div>
+
+</div>
+    </div>
+</body>
+</html>
