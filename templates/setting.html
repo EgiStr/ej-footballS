@@ -2,14 +2,59 @@
 {% load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>hello {{profil.nickname}}</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-</head>
 <body>
+
+</head>
+{% if profil.nickname == namaD %}
+    <link rel="stylesheet" href="{% static 'css/card.css' %}">
+<div class="container">
+	<div class="row">
+
+            <div class="card hovercard" style="height:600px;">
+                {% comment %} <div class="cardheader" style="background:url('http://127.0.0.1:8000{{profil.backgorund.url}}');height: 350px;"> {% endcomment %}
+
+                </div>
+                <div class="avatar">
+                    <img alt="KOSONG" src="">
+                </div>
+                <div class="info">
+                    <div class="title">
+                        <a target="_blank" href="https://scripteden.com/">{{profil.nickname}}</a>
+                    </div>
+                    <div class="desc">Passionate designer</div>
+                    <div class="desc">Curious developer</div>
+                    <div class="desc">Tech geek</div>
+                </div>
+                {% comment %} <div class="bottom">
+                    <a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/webmaniac">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a class="btn btn-danger btn-sm" rel="publisher"
+                       href="https://plus.google.com/+ahmshahnuralam">
+                        <i class="fa fa-google-plus"></i>
+                    </a>
+                    <a class="btn btn-primary btn-sm" rel="publisher"
+                       href="https://plus.google.com/shahnuralam">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a class="btn btn-warning btn-sm" rel="publisher" href="https://plus.google.com/shahnuralam">
+                        <i class="fa fa-behance"></i>
+                    </a>
+                </div> {% endcomment %}
+            </div>
+
+      
+
+	</div>
+
+{% else %}
+
 
 <link rel="stylesheet" href="{% static 'css/card.css' %}">
 <div class="container">
@@ -52,7 +97,15 @@
 
 	</div>
 
+{% endif %}
+    
+
+
+    
+    
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
 
         <div class="text-center">
         <h2>UPDATE SETTING PROFIL</h2>
