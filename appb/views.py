@@ -18,7 +18,7 @@ def index(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect("app:logib")
+    return redirect("app:login")
 
 
 def register(request):
@@ -54,32 +54,37 @@ def register(request):
     return render(request, 'register.html', context)
 
 
-def login(request):
+def userlogin(request):
     """
     docstring
     """
     if request.method == "POST":
-        if request.method == "POST":
-            username = request.POST.get('username')
-            password = request.POST.get('password')
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('app:index')
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('app:index')
         else:
 
-            return redirect("app:login")
+            return render(request, 'login.html', {'error': True})
+
     return render(request, 'login.html')
 
 
 def settingProfil(request):
     users = request.user.costumer
     form = FormUser(instance=users)
-    profil = Costumer.objects.filter(user=request.user)
+    profil = Costumer.objects.get(user=request.user)
     if request.method == "POST":
         form = FormUser(request.POST, request.FILES, instance=users)
         if form.is_valid():
             form.save()
+            context = {
+                "profil": profil,
+                'form': form,
+            }
+            return redirect("app:setting")
 
     context = {
         "profil": profil,

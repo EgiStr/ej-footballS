@@ -37,8 +37,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'appb',
+    'social_django',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.facebook',
+
 ]
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -48,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'newleauge.urls'
@@ -55,7 +67,9 @@ ROOT_URLCONF = 'newleauge.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -63,10 +77,22 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-            ],
+
+                'social_django.context_processors.backends',  # <--
+                'social_django.context_processors.login_redirect',  # <--
+            ]
         },
     },
 ]
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+
+)
 
 WSGI_APPLICATION = 'newleauge.wsgi.application'
 
@@ -100,6 +126,35 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        # For each OAuth based provider, either add a ``SocialApp``
+        # (``socialaccount`` app) containing the required client
+        # credentials, or list them here:
+        'APP': {
+            'client_id': '853564458690-qp83fa5270i272sheigrs9ls49en1ei3.apps.googleusercontent.com',
+            'secret': 'Lo3fsT-BXYY1kcAaOlTBDTHM',
+            'key': ''
+        }
+    },
+    'facebook': {
+        # For each OAuth based provider, either add a ``SocialApp``
+        # (``socialaccount`` app) containing the required client
+        # credentials, or list them here:
+        'APP': {
+            'client_id': '182324383553217',
+            'secret': '5144d37944240c20fda724b6fb04fa44',
+            'key': ''
+        }
+    },
+    "github": {
+        'App': {
+            'client_id': 'dbe547c382d18a05fee5',
+            'secret': '2ea1aac4cadd0a73e96a2ca954c5f6b246f06488',
+            'key': ''
+        }
+    }
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -114,6 +169,24 @@ USE_L10N = True
 
 USE_TZ = True
 
+SOCIAL_AUTH_GITHUB_KEY = 'dbe547c382d18a05fee5'
+SOCIAL_AUTH_GITHUB_SECRET = '2ea1aac4cadd0a73e96a2ca954c5f6b246f06488'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '182324383553217'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '5144d37944240c20fda724b6fb04fa44'  # App Secret
+
+SOCIAL_AUTH_TWITTER_KEY = 'EmdWKd6ob1QKoHNel6xb4yffX'  # App ID
+SOCIAL_AUTH_TWITTER_SECRET = 'PwJR2P5n4FTW5SKpmVGTDelYYtfLeQtDAC7d1M2B3TLiqNgmT0'  # App Secret
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '322309697156-4d0sl7a7ttpcjp2urt1555gipkv73gr5.apps.googleusercontent.com'  # App ID
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'z7DxgQkVF-8V9SwgIfSfgoJW'  # App Secret
+
+LOGIN_URL = 'app:login'
+LOGOUT_URL = 'app:logout'
+LOGIN_REDIRECT_URL = 'app:index'
+
+# ACCOUNT_SIGNUP_FORM_CLASS = 'appb.forms.SignupForm'
+# AUTH_USER_MODEL = 'appb.Costumer'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
@@ -121,7 +194,7 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),

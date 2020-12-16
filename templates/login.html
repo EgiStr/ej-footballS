@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <form action="" method="post">
+    {% csrf_token %}
+    <div id="container">
+        <div id="formcontainer"> <img id="img1" src="https://images.pexels.com/photos/414645/pexels-photo-414645.jpeg?cs=srgb&dl=background-beverage-brown-414645.jpg&fm=jpg"> <a href="#"><img id="cross" src="https://image.flaticon.com/icons/svg/148/148766.svg"></a>
+            <p id="text">Login to your Account</p> <input id="email" type="text" name="username" placeholder="username"> <input id="password" type="password" name="password" placeholder="Password">
+            <p id="text1">Remember Me</p> <a id="forget" href="#">Forget Password ?</a> <button id="login" type="submit">Log In</button>
+            <hr id="hrline1">
+            <p id="text2">or login with</p>
+    </form>
+            <hr id="hrline2"> <a href="/accounts/github/login/?process=login&amp;next=%2F" id="facebook"><img id="facebook1" src="https://www.google.com/search?q=github+svg&rlz=1C1SQJL_enID901ID901&sxsrf=ALeKk008w8qcUNHffuyfH5zIg9AzuJUHTg:1607840310208&tbm=isch&source=iu&ictx=1&fir=qQ5yULUHvh_RRM%252CA3gtwC6YNh83PM%252C_&vet=1&usg=AI4_-kTXImZ_SXdO6qOBfISsoLgKjrVDAw&sa=X&ved=2ahUKEwjOl670p8rtAhVP63MBHd72BiAQ9QF6BAgSEAE#imgrc=qQ5yULUHvh_RRM" href=""> google</a> <a href="/accounts/google/login/?process=login&amp;next=%2F" id="google"><img id="google1" src="https://image.flaticon.com/icons/svg/281/281764.svg">Google</a>
+            <p id="text3">Not a Member?</p> <a id="signup" href="#">Signup Now</a>
+        </div>
+    </div>
+<script>
+    $(document).ready(function(){
+document.getElementById("cross").onclick=function(){
+document.getElementById("formcontainer").style.display="none";
+};
+});
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></script>
+<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+</body>
+</html>
