@@ -21,8 +21,12 @@ class Costumer(models.Model):
     nomorhp = models.IntegerField(blank=True, null=True)
     profil = models.ImageField(upload_to='media/image',
                                height_field='height_field', width_field='width_field', max_length=None, default='media/image/IMG_20191007_233026_695.jpg')
+    background = models.ImageField(
+        upload_to='media/bgimg', height_field='height_field2', width_field='width_field2', default='media/image/IMG_20191007_233026_695.jpg')
     height_field = models.IntegerField(default=0)
+    height_field2 = models.IntegerField(default=0)
     width_field = models.IntegerField(default=0)
+    width_field2 = models.IntegerField(default=0)
 
     def fullname(self):
         return str(self.nameD) + str(self.nameB)
@@ -46,10 +50,11 @@ def save_user_Costumer(sender, instance, **kwargs):
     # instance.Costumer.save()
     pass
 
-    # def Costumer_receiver(sender, instance, created, *args, **kwargs):
-    #     if created:
-    #         Costumer = Costumer.objects.create(user=instance)
-    #     else:
-    #         instance.Costumer.save()
 
-    # post_save.connect(Costumer_receiver, sender=settings.AUTH_USER_MODEL)
+# def Costumer_receiver(sender, instance, created, *args, **kwargs):
+#     if created:
+#         Costumer = Costumer.objects.create(user=instance)
+#     else:
+#         instance.Costumer.save()
+
+# post_save.connect(Costumer_receiver, sender=settings.AUTH_USER_MODEL)

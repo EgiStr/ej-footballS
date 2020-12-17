@@ -10,7 +10,8 @@ class FormUser(forms.ModelForm):
     """
     class Meta:
         model = Costumer
-        fields = ["nameD", "nameB", "nickname", "nomorhp", "profil"]
+        fields = ["nameD", "nameB", "nickname",
+                  "nomorhp", "profil", 'background']
 
 
 class UserForm(UserCreationForm):

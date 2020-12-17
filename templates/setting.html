@@ -11,21 +11,20 @@
 <body>
 
 </head>
-{% if profil.nickname == namaD %}
     <link rel="stylesheet" href="{% static 'css/card.css' %}">
 <div class="container">
 	<div class="row">
 
             <div class="card hovercard" style="height:600px;">
-                {% comment %} <div class="cardheader" style="background:url('http://127.0.0.1:8000{{profil.backgorund.url}}');height: 350px;"> {% endcomment %}
+                <div class="cardheader" style="background:url('http://127.0.0.1:8000{{profil.background.url}}') ;height: 350px;">
 
                 </div>
                 <div class="avatar">
-                    <img alt="KOSONG" src="">
+                    <img alt="KOSONG" src="{{profil.profil.url}}">
                 </div>
                 <div class="info">
                     <div class="title">
-                        <a target="_blank" href="https://scripteden.com/">{{profil.nickname}}</a>
+                        <a target="_blank" href="">{{profil.nickname}}</a>
                     </div>
                     <div class="desc">Passionate designer</div>
                     <div class="desc">Curious developer</div>
@@ -53,51 +52,7 @@
 
 	</div>
 
-{% else %}
 
-
-<link rel="stylesheet" href="{% static 'css/card.css' %}">
-<div class="container">
-	<div class="row">
-
-            <div class="card hovercard" style="height:600px;">
-                <div class="cardheader" style="background:url('http://127.0.0.1:8000{{profil.backgorund.url}}');height: 350px;">
-
-                </div>
-                <div class="avatar">
-                    <img alt="" src="{{profil.profil.url}}">
-                </div>
-                <div class="info">
-                    <div class="title">
-                        <a target="_blank" href="https://scripteden.com/">{{profil.nickname}}</a>
-                    </div>
-                    <div class="desc">Passionate designer</div>
-                    <div class="desc">Curious developer</div>
-                    <div class="desc">Tech geek</div>
-                </div>
-                {% comment %} <div class="bottom">
-                    <a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/webmaniac">
-                        <i class="fa fa-twitter"></i>
-                    </a>
-                    <a class="btn btn-danger btn-sm" rel="publisher"
-                       href="https://plus.google.com/+ahmshahnuralam">
-                        <i class="fa fa-google-plus"></i>
-                    </a>
-                    <a class="btn btn-primary btn-sm" rel="publisher"
-                       href="https://plus.google.com/shahnuralam">
-                        <i class="fa fa-facebook"></i>
-                    </a>
-                    <a class="btn btn-warning btn-sm" rel="publisher" href="https://plus.google.com/shahnuralam">
-                        <i class="fa fa-behance"></i>
-                    </a>
-                </div> {% endcomment %}
-            </div>
-
-      
-
-	</div>
-
-{% endif %}
     
 
 
