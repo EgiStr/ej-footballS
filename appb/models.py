@@ -12,12 +12,12 @@ class Costumer(models.Model):
     """
     user = models.OneToOneField(
         User, on_delete=models.CASCADE)
-    nameD = models.CharField(max_length=50)
-    nameB = models.CharField(max_length=50)
+    nameD = models.CharField(max_length=50, blank=True, null=True)
+    nameB = models.CharField(max_length=50, blank=True, null=True)
     nickname = models.CharField(max_length=50, default='nameD')
     publish = models.DateTimeField(auto_now=False, auto_now_add=True)
     update = models.DateTimeField(auto_now=True, auto_now_add=False)
-    email = models.EmailField(blank=True, null=True)
+    email = models.EmailField(default="gmail@gmail.com")
     nomorhp = models.IntegerField(blank=True, null=True)
     profil = models.ImageField(upload_to='media/image',
                                height_field='height_field', width_field='width_field', max_length=None, default='media/image/IMG_20191007_233026_695.jpg')
@@ -33,9 +33,6 @@ class Costumer(models.Model):
 
     def __str__(self):
         return f'{self.id}.{self.user}'
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)

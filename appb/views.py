@@ -34,13 +34,12 @@ def register(request):
             email = form.cleaned_data.get('email')
             phone = request.POST.get('phone')
             user = form.save()
-            group = Group.objects.get(name='costumer')
-            user.groups.add(group)
+
             Costumer.objects.create(
                 user=user,
-                name=username,
+                nickname=username,
                 email=email,
-                phone=phone
+
 
             )
             return redirect("app:login")
@@ -77,12 +76,14 @@ def userlogin(request):
                 password = form.cleaned_data.get('password')
                 email = form.cleaned_data.get('email')
                 user = form.save()
-                group = Group.objects.get(name='costomer')
-                user.groups.add(group)
                 Costumer.objects.create(
                     user=user,
+                    nickname=username,
+                    email=email,
+
                 )
                 return render(request, 'login.html')
+
             else:
                 return render(request, 'login.html', {'error': True})
         else:
