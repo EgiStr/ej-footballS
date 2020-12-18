@@ -55,21 +55,40 @@ def register(request):
 
 
 def userlogin(request):
-    """
-    docstring
-    """
+    form = UserForm()
+    context = {
+        "form": form
+    }
     if request.method == "POST":
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('app:index')
-        else:
+        if request.POST.get('submit') == 'sign_in':
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('app:index')
+            else:
+                return render(request, 'login.html', {'error': True})
 
+        elif request.POST.get('submit') == 'sign_up':
+            form = UserForm(request.POST)
+            if form.is_valid():
+                username = form.cleaned_data.get('username')
+                password = form.cleaned_data.get('password')
+                email = form.cleaned_data.get('email')
+                user = form.save()
+                group = Group.objects.get(name='costomer')
+                user.groups.add(group)
+                Costumer.objects.create(
+                    user=user,
+                )
+                return render(request, 'login.html')
+            else:
+                return render(request, 'login.html', {'error': True})
+        else:
             return render(request, 'login.html', {'error': True})
 
-    return render(request, 'login.html')
+    return render(request, 'login.html', context)
 
 
 def settingProfil(request):
