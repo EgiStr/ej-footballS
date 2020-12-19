@@ -21,10 +21,18 @@ def logoutUser(request):
     return redirect("app:login")
 
 
-def shelldul(parameter_list):
+def detailjadwal(request):
     """
     docstring
     """
+    pass
+
+
+def detailliga(request):
+    pass
+
+
+def detailteam(request):
     pass
 
 

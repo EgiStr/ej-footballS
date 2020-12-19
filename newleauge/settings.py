@@ -38,16 +38,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    # local app
+    'appb',
+    # extension
     'widget_tweaks',
 
+    # login sosmed app
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'appb',
-    'social_django',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.facebook',
+    'social_django',
 
 ]
 SITE_ID = 1

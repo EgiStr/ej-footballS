@@ -34,6 +34,8 @@ class Costumer(models.Model):
     def __str__(self):
         return f'{self.id}.{self.user}'
 
+#  for every user add in database => user will add to database Costumer
+
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_user_Costumer(sender, instance, created, **kwargs):
