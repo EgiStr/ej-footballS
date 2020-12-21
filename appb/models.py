@@ -7,9 +7,7 @@ from django.dispatch import receiver
 
 
 class Costumer(models.Model):
-    """
-    docstring
-    """
+
     user = models.OneToOneField(
         User, on_delete=models.CASCADE)
     nameD = models.CharField(max_length=50, blank=True, null=True)

@@ -55,7 +55,6 @@ def register(request):
                 nickname=username,
                 email=email,
 
-
             )
             return redirect("app:login")
         else:
