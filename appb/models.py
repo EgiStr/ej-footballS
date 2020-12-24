@@ -38,8 +38,11 @@ class Costumer(models.Model):
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_user_Costumer(sender, instance, created, **kwargs):
     if created:
-        print(instance)
-        Costumer.objects.create(user=instance)
+        Costumer.objects.create(
+            user=instance,
+            nickname=str(instance),
+            email=instance.email,
+        )
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)

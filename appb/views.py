@@ -13,6 +13,7 @@ def index(request):
     """
     docstring
     """
+    print(request.user.id)
     return render(request, 'index.html')
 
 
@@ -34,14 +35,6 @@ def register(request):
             email = form.cleaned_data.get('email')
             phone = request.POST.get('phone')
             user = form.save()
-
-            Costumer.objects.create(
-                user=user,
-                nickname=username,
-                email=email,
-
-
-            )
             return redirect("app:login")
     else:
         form = UserForm()
@@ -76,12 +69,7 @@ def userlogin(request):
                 password = form.cleaned_data.get('password')
                 email = form.cleaned_data.get('email')
                 user = form.save()
-                Costumer.objects.create(
-                    user=user,
-                    nickname=username,
-                    email=email,
 
-                )
                 return render(request, 'login.html')
 
             else:
