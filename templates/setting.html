@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 {% load static %}
+{% load widget_tweaks %}
 <html lang="en">
 <head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Set {{profil.nickname}}</title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/settingForm.css' %}">
+</head>
 <body>
 
-</head>
     <link rel="stylesheet" href="{% static 'css/card.css' %}">
 <div class="container">
 	<div class="row">
@@ -49,28 +48,50 @@
 
 	</div>
 
-
-    
-
-
-    
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-
-
         <div class="text-center">
-        <h2>UPDATE SETTING PROFIL</h2>
-        
         <form action="" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <table>
-                {{form.as_table}}
+        {% csrf_token %}
+        <div class="form-group">
+        {% render_field form.nameD class="form-control"  placeholder="fist Name" %}
+        </div>
+        <div class="form-group">
+        {% render_field form.nameB class="form-control"  placeholder="Last Name" %}
+        </div>
+        <div class="form-group">
+        {% render_field form.nickname class="form-control"  placeholder=" nickName" %}
+        </div>
+        <div class="form-group">
+        {% render_field form.nomorhp class="form-control"  placeholder="nomorHP" %}
+        </div>
+        <div class="form-group">
+        {% render_field form.background class="form-control"  placeholder="nomorHP" %}
+        </div>
 
-            </table>
-            <button class="btn btn-primary" type="submit">Send</button>
+        <div class="file-upload">
+            <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger('click')">Add Image</button>
+            <div class="image-upload-wrap">
+            {% render_field form.profil id="id_profil" name="profil" class="file-upload-input"  onchange="readURL(this);" %}
+                {% comment %} <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" /> {% endcomment %}
+                <div class="drag-text">
+                <h3>Drag and drop a file or select add Image</h3>
+                </div>
+            </div>
+            <div class="file-upload-content">
+                <img class="file-upload-image" src="{{profil.profil.url}}" alt="your image" />
+                <div class="image-title-wrap">
+                <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary form-control" type="submit">submit</button>
         </form>
         </div>
     </div>
+    
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="{% static 'js/setting.js' %}"> </script>
 </body>
 </html>
