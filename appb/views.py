@@ -22,6 +22,21 @@ def logoutUser(request):
     return redirect("app:login")
 
 
+def detailjadwal(request):
+    """
+    docstring
+    """
+    pass
+
+
+def detailliga(request):
+    pass
+
+
+def detailteam(request):
+    pass
+
+
 def register(request):
     form = UserForm()
     context = {
@@ -35,7 +50,8 @@ def register(request):
             email = form.cleaned_data.get('email')
             phone = request.POST.get('phone')
             user = form.save()
-            return redirect("app:login")
+        else:
+            return render(request, 'login.html', {'errorLogin': True})
     else:
         form = UserForm()
         context = {
@@ -51,6 +67,7 @@ def userlogin(request):
     context = {
         "form": form
     }
+
     if request.method == "POST":
         if request.POST.get('submit') == 'sign_in':
             username = request.POST.get('username')
@@ -60,7 +77,7 @@ def userlogin(request):
                 login(request, user)
                 return redirect('app:index')
             else:
-                return render(request, 'login.html', {'error': True})
+                return render(request, 'login.html', {'errorLogin': True})
 
         elif request.POST.get('submit') == 'sign_up':
             form = UserForm(request.POST)

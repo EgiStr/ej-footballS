@@ -7,9 +7,7 @@ from django.dispatch import receiver
 
 
 class Costumer(models.Model):
-    """
-    docstring
-    """
+
     user = models.OneToOneField(
         User, on_delete=models.CASCADE)
     nameD = models.CharField(max_length=50, blank=True, null=True)
@@ -33,6 +31,8 @@ class Costumer(models.Model):
 
     def __str__(self):
         return f'{self.id}.{self.user}'
+
+#  for every user add in database => user will add to database Costumer
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
