@@ -25,7 +25,9 @@
                 </div>
                 <div class="input-field">
                     <i class="fa fa-lock"></i>
-                    <input id="password" type="password" name="password" placeholder="Password">
+                    <input id="password" type="password" name="password" class="password" placeholder="Password">
+                    <button class="unmask" type="button"><i class="button fa fa-eye" aria-hidden="true"></i> </button>
+                
                 </div>
 
                     {% if errorLogin %}
@@ -60,13 +62,15 @@
                     <i class="fa fa-envelope"></i>
                     {% render_field form.email id="email"  placeholder="Email...." %}
                 </div>
-                <div class="input-field">
+                <div class="input-field row">
                     <i class="fa fa-lock"></i>
-                     {% render_field form.password1  placeholder="Password " %}
+                     {% render_field form.password1 class="password"  placeholder="Password " %}
+                     <button class="unmask" type="button"><i class="button fa fa-eye" aria-hidden="true"></i> </button>
                 </div>
                 <div class="input-field">
                     <i class="fa fa-lock"></i>
-                    {% render_field form.password2  placeholder="Password Confirm" %}
+                    {% render_field form.password2 class="password"  placeholder="Password Confirm" %}
+                    <button class="unmask" type="button" style="display:inline-block"><i class="button fa fa-eye" aria-hidden="true"></i> </button>
                 </div>
                         {% if error  %}
                 <div class="input-field">
@@ -104,7 +108,15 @@
     </div>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="{% static 'js/set.js' %}"></script>
-
+    <script>
+        $('.unmask').on('click', function () {
+        if ($(this).prev('input').attr('type') == 'password')
+            $(this).prev('input').prop('type', 'text');
+        else
+            $(this).prev('input').prop('type', 'password');
+        return false;
+        });
+    </script>
         {% if error %}
     <script>
             function signup() {

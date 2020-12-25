@@ -1,3 +1,10 @@
+$('.unmask').on('click', function () {
+    if ($(this).prev('input').attr('type') == 'password')
+        $(this).prev('input').prop('type', 'text');
+    else
+        $(this).prev('input').prop('type', 'password');
+    return false;
+});
 
 function signup() {
     $('#sign-up').removeClass("sign-up").addClass("sign-up-2");
@@ -16,3 +23,10 @@ function signin() {
     btn_2.style.display = "none";
 }
 // e.style.display = "";
+$('.unmask').on('click', function () {
+    if ($(this).prev('input').attr('type') == 'password')
+        $(this).prev('input').prop('type', 'text');
+    else
+        $(this).prev('input').prop('type', 'password');
+    return false;
+});
