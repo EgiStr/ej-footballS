@@ -70,7 +70,7 @@
                 <div class="input-field">
                     <i class="fa fa-lock"></i>
                     {% render_field form.password2 class="password"  placeholder="Password Confirm" %}
-                    <button class="unmask" type="button" style="display:inline-block"><i class="button fa fa-eye" aria-hidden="true"></i> </button>
+                    <button class="unmask" type="button" style="border:0;"><i class="button fa fa-eye" aria-hidden="true"></i> </button>
                 </div>
                         {% if error  %}
                 <div class="input-field">
@@ -95,7 +95,7 @@
         </div>
     </div>
     <div class="left-panel">
-        <div id="sign-up-btn" class="sign-up-btn" style="">
+        <div id="sign-up-btn" class="sign-up-btn" >
             <h1 class="panel">Dont have account?</h1>
             <h3 class="panel">create account to more experience</h3>
             <input class="btn-signup" onclick="signup()" type="button" value="SIGN UP">
@@ -117,6 +117,7 @@
         return false;
         });
     </script>
+    
         {% if error %}
     <script>
         function signup() {

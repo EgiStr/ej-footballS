@@ -1,0 +1,23 @@
+.search-wrapper {
+    display: flex;
+    flex-direction: row;
+    padding: 0 15px;
+}
+
+.search-wrapper i {
+    line-height: 50px;
+}
+
+.search-wrapper input {
+    border: none;
+}
+
+input:focus {
+    border-bottom: none!important;
+    box-shadow: none!important;
+}
+
+.search-wrapper {
+    border-bottom: 1px solid #bdbdbd;
+    border-top: 1px solid #bdbdbd;
+}
